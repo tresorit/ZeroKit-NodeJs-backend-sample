@@ -1,0 +1,22 @@
+{
+  "dbUrl": "mongodb://The url of the mongodb behind this application",
+  "baseUrl": "The location where your backend will be hosted",
+  "appOrigins": ["A list of origins for CORS control"],
+  "zeroKit": {
+    "serviceUrl": "ServiceURL as displayed on the portal",
+    "adminUserId": "The admin user id as displayed on the portal",
+    "adminKey": "The admin key as displayed on the portal",
+    "sdkVersion": "The sdk version",
+    "idp": [
+      {
+        "clientID": "The id of an idp client accepted by this backend",
+        "clientSecret": "The secret of the idp client"
+      },
+      {
+        "clientID": "The client id of another idp client accepted by this backend",
+        "clientSecret": "Another client secret",
+        "callbackURL": "Optionally you can set the callback url explicitly (required for mobile)"
+      }
+    ]
+  }
+}
