@@ -4,7 +4,8 @@
   "main": "bin/www",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha --timeout 100000"
+    "test": "mocha --timeout 100000",
+    "cover": "istanbul cover _mocha"
   },
   "engines": {
     "node": "6.x || 7.x"
@@ -32,11 +33,12 @@
     "uid2": "^0.0.3"
   },
   "devDependencies": {
-    "chai-as-promised": "latest",
     "chai": "latest",
+    "chai-as-promised": "latest",
     "chai-http": "latest",
-    "webdriverio": "latest",
-    "eslint": "latest"
+    "eslint": "latest",
+    "mocha": "^3.2.0",
+    "webdriverio": "latest"
   },
   "peerDependencies": {
     "mocha": "^3.2.0"

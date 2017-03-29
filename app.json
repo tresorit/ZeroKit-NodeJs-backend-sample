@@ -1,0 +1,7 @@
+{
+  "name": "ZeroKit Node.js sample backend",
+  "description": "A simple express app that serves as the backend of the ZeroKit example clients",
+  "repository": "https://github.com/tresorit/ZeroKit-NodeJs-backend-sample",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "rest", "zerokit", "encryption"]
+}
