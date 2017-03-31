@@ -28,6 +28,8 @@ See [below](#database) on how to get one for free.
     - callbackURL: Where the IDP process redirects to, overriding the automatic calculation.
                     Required for hybrid flow (mobile) clients and optional for code flow (web) clients.
 
+Please keep in mind, that many of these settings are used for strict, case-sensitive character matching, so they should be the same as on the management portal character-to-character.
+
 If you want to use it with your own application you need to also modify app.js and customize the application logic
 through the callbackConfig.
 
@@ -61,6 +63,9 @@ To add a client that will be used in a web app:
 - Click Apply
 - Now you need to add the client to the IDP portion of your config.json    
     See [above](#configuration) for details or see an example in [./config.example.json].
+    
+Please keep in mind, that all the settings will be used for strict, case-sensitive matching, so you should take care that the settings on the management portal and the settings in the config match character-to-character.
+
 #### Mobile
 To add a client that will be used in a mobile app:
 - Click Add client
@@ -80,7 +85,8 @@ To add a client that will be used in a mobile app:
 - Click Apply
 - Now you need to add the client to the IDP portion of your config.json    
     See [above](#configuration) for details or see an example in [./config.example.json].
-
+    
+Please keep in mind, that all the settings will be used for strict, case-sensitive matching, so you should take care that the settings on the management portal and the settings in the config match character-to-character.
 ## Running
 If it's configured, you can run it simply by ```npm start``` 
 
@@ -88,7 +94,7 @@ This will start a server listening on port 3000, your application can make reque
 
 ### Environmental variables
 Some of the applications behaviour can be controlled by environmental variables:
-- ZKITCONFIGFILENAME: if you want to use a different configuration file (i.e. for testing) you can set up a path relative to the project root here
+- ZKIT_CONFIG_FILE: if you want to use a different configuration file (i.e. for testing) you can set up a path relative to the project root here
 - DEBUG: verbose logging can be controlled by setting this to different values, turning on all logging by "ZeroKit-backend-sample:*"
 - PORT: defines the port the server is listening on (3000 by default)
 

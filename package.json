@@ -27,7 +27,7 @@
     "oauth": "^0.9.15",
     "passport": "^0.3.2",
     "passport-http-bearer": "^1.0.1",
-    "passport-openidconnect": "git+https://github.com/jaredhanson/passport-openidconnect.git",
+    "passport-openidconnect": "git+https://github.com/jaredhanson/passport-openidconnect.git#ac1c0257f02353f818be33c0602cca5883d97235",
     "request": "^2.79.0",
     "request-promise-native": "^1.0.3",
     "uid2": "^0.0.3"
