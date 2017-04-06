@@ -7,6 +7,8 @@ It provides a fully functional REST api that is used by our other examples.
 If you are using it with our examples, you only need to enter your configuration in config.json. It was designed with
 reusability in mind, but there are some preparations to make if you want to use it in your own app.
 
+This runs on Node.js > 6.0
+
 ## Configuration
 Before you can start the server you should configure it by editing [config.json](./config.json). It's important to note,
 that you will need IDP configured on your tenant as we recommend for all applications that need server side authorization.
@@ -88,7 +90,9 @@ To add a client that will be used in a mobile app:
     
 Please keep in mind, that all the settings will be used for strict, case-sensitive matching, so you should take care that the settings on the management portal and the settings in the config match character-to-character.
 ## Running
-If it's configured, you can run it simply by ```npm start``` 
+You need to first install dependencies by ```npm install```
+
+Then, if it's configured, you can run it simply by ```npm start``` 
 
 This will start a server listening on port 3000, your application can make request to this, a full documentation is on it's way.   
 
