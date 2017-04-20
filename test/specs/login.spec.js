@@ -109,6 +109,22 @@ module.exports = function () {
           }).should.be.fulfilled
           .then(() => c.createTresor().should.be.fulfilled);
       });
+
+      describe('server logout', function () {
+        it('should work', function () {
+          const userName = Date.now();
+          return c.register(userName, 'a')
+            .then(() => c.login(userName, 'a'))
+            .then(() => test.server.get(`/api/auth/login?clientId=${test.codeClientId}&reto=${encodeURIComponent('/api/data/profile')}`).redirects(0))
+            .catch(({response}) => test.client.continueCodeFlow(response.headers.location))
+            .then((url) => test.server.get('/api/auth/callback'+ url.substr(url.indexOf('?'))))
+            .then(() => test.server.get(`/api/auth/logout`))
+            .then(() =>
+              c.createTresor().should.be.rejected
+                .then(error => error.should.have.property('status').equal(401))
+            );
+        });
+      });
     });
 
     describe('IDP Hybrid flow', function () {
@@ -152,6 +168,47 @@ module.exports = function () {
               .that.is.a('string').equal(userId);
             return c.createTresor(body.id).should.be.successfull;
           });
+      });
+
+      describe('server logout', function () {
+        it('should work', function () {
+          const state = (Date.now()).toString() + Math.random().toString();
+          const userName = Date.now();
+          let userId;
+          return c.register(userName, 'a')
+            .then(id => userId = id)
+            .then(() => c.login(userName, 'a'))
+            .then(() => test.client.hybridLogin(test.hybridClientId, state))
+            .then((url) => {
+              const hash = url.substr(url.indexOf('#') + 1);
+
+              const result = hash.split('&').reduce(function (result, item) {
+                const parts = item.split('=').map(decodeURIComponent);
+                result[parts[0]] = parts[1];
+                return result;
+              }, {});
+              result.should.not.have.property('error');
+              result.should.have.property('state').equal(state);
+              result.should.have.property('code');
+              return test.server.post(`/api/auth/login-by-code?clientId=${test.hybridClientId}`)
+                .send({code: result.code});
+            }).then(({body}) => {
+              body.should.have.property('id').that.is.a('string');
+              body.should.have.property('user')
+                .that.that.has.a.property('zkitId')
+                .that.is.a('string').equal(userId);
+              return test.server.get(`/api/auth/logout-token`)
+                .set('Authorization', `Bearer ${body.id}`)
+                .send()
+                .then(() => c.createTresor(body.id).should.be.rejected)
+                .then(error => error.should.have.property('status').equal(401))
+            })
+
+            .then(() =>
+              c.createTresor().should.be.rejected
+                .then(error => error.should.have.property('status').equal(401))
+            );
+        });
       });
     });
   });

@@ -26,6 +26,15 @@ module.exports = function () {
           );
       });
 
+      it('should work with non-json string profileData',  function () {
+        return test.server
+          .post('/api/user/init-user-registration')
+          .send({userName: user1, profileData: "nonJSON"})
+          .then((initResp) =>
+            initResp.should.have.property('status').equal(200)
+          );
+      });
+
       it('should work again on unfinished registrations', function () {
         return test.server
           .post('/api/user/init-user-registration')

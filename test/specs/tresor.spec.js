@@ -30,6 +30,30 @@ module.exports = function () {
           ]);
       });
 
+      it('should return 400 if with no tresorId sent', function () {
+        return test.server
+            .post('/api/tresor/created')
+          .set('Authorization', `Bearer ${token}`)
+            .send({})
+            .should.be.rejected.then(error => [
+              error.should.have.property('status').equal(400),
+              error.response.should.have.property('body')
+                .that.has.property('code').equal('MissingTresorId')
+            ]);
+      });
+
+      it('should return 400 if with invalid tresorId sent', function () {
+        return test.server
+          .post('/api/tresor/created')
+          .set('Authorization', `Bearer ${token}`)
+          .send({tresorId: 'nope'})
+          .should.be.rejected.then(error => [
+            error.should.have.property('status').equal(400),
+            error.response.should.have.property('body')
+              .that.has.property('code').equal('InvalidTresorId')
+          ]);
+      });
+
       it('should save the tresor with the proper members', function () {
         return test.client.createTresor()
           .then((tresorId) => test.server

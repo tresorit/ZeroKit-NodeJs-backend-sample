@@ -209,8 +209,9 @@ function router(callbackConfig) {
 
   authApi.get("/logout-token", function(req, res) {
     const authorization = req.header("Authorization");
-    const token = /Bearer (.*)/.exec(authorization);
-    if (token) tokenStore.revokeToken(token);
+    const token = /Bearer (.*)/.exec(authorization)[1];
+
+    tokenStore.revokeToken(token);
 
     res.json({});
   });
