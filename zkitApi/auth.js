@@ -162,10 +162,10 @@ function router(callbackConfig) {
           next(errors.forbidden("Expired token"));
 
         // 9. The iat Claim can be used to reject tokens that were issued too far away from the current time, limiting the amount of time that nonces need to be stored to prevent attacks. The acceptable range is Client specific.
-        if (idtoken.payload.iat * 1000 < Date.now() - 300000)
+        if (idtoken.payload.iat * 1000 < Date.now() - 900000)
           next(errors.forbidden("Token too old"));
 
-        if (idtoken.payload.iat * 1000 > Date.now())
+        if (idtoken.payload.iat * 1000 > Date.now() + 900000)
           next(errors.forbidden("Token issued in future"));
 
         /* TODO: we don't requiest anything else, but we should think about implementing some kind of validation
