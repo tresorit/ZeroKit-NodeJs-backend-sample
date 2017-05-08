@@ -56,6 +56,36 @@ module.exports = function () {
       });
     });
 
+    describe('public-profile', () => {
+      it('store should set the proper publicProfileData in db', () => {
+        const testData = uid(64);
+        return test.server.post('/api/data/public-profile')
+          .set('Authorization', `Bearer ${token}`)
+          .send({data: testData})
+          .should.be.fulfilled
+          .then(() =>
+            test.User.findOne({zkitId: userId}).then(
+              user => user.publicProfileData.should.equal(testData)
+            )
+          );
+      });
+
+      it('should be able to get previously set data', () => {
+        const testData = uid(64);
+        return test.server.post(`/api/data/public-profile`)
+          .set('Authorization', `Bearer ${token}`)
+          .send({data: testData})
+          .should.be.fulfilled
+          .then(() =>
+            test.server.get(`/api/data/public-profile?id=${encodeURIComponent(userId)}`)
+              .set('Authorization', `Bearer ${token}`)
+          ).then(({body}) => [
+            body.should.be.ok,
+            body.should.equal(testData)
+          ]);
+      });
+    });
+
     describe('normal', () => {
       let tresorId;
       let dataId;

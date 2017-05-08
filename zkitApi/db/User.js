@@ -50,7 +50,11 @@ const userSchema = new Schema({
   /**
    * Arbitrary profile data that can be accessed by the user.
    */
-  profileData: { type: String }
+  profileData: { type: String },
+  /**
+   * Arbitrary public profile data that can be accessed by any logged in user.
+   */
+  publicProfileData: { type: String }
 });
 
 module.exports = mongoose.model("User", userSchema);

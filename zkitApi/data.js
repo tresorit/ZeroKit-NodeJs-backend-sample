@@ -19,7 +19,20 @@ module.exports = function(callbackConfig = {}) {
     const tresorId = req.body.tresorId;
     const data = req.body.data;
 
-    dataMethods.storeData(dataId, tresorId, cUser, data).then(() => res.json({}), next);
+    return dataMethods.storeData(dataId, tresorId, cUser, data).then(() => res.json({}), next);
+  });
+
+  router.get("/public-profile", function (req, res, next) {
+    const userId = req.query.id;
+
+    return dataMethods.getPublicProfile(userId).then((result) => res.json(result), next);
+  });
+
+  router.post("/public-profile", function (req, res, next) {
+    const cUser = req.user;
+    const data = req.body.data;
+
+    return dataMethods.storePublicProfile(cUser, data).then(() => res.json({}), next);
   });
 
   router.get("/profile", function(req, res, next) {

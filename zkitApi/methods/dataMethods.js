@@ -26,6 +26,22 @@ module.exports = function(callbackConfig) {
   }
 
   /**
+   * Gets the public profile data of the requested user passing it through transformPublicProfileToGet of the callbackConfig.
+   * @param userId The id of the user to query
+   * @return {Promise}
+   */
+  function getPublicProfile(userId) {
+    return User.findOne({ zkitId: userId }).then(user => {
+      if (!user)
+        throw errors.notFound("UserNotFound");
+
+      return callbackConfig.transformPublicProfileToGet
+        ? callbackConfig.transformPublicProfileToGet(user, user.publicProfileData)
+        : user.publicProfileData;
+    });
+  }
+
+  /**
    * Stores the profile data of the user if canStoreProfile allowed it, passing it through transformProfileToStore.
    * @param cUser The current user (the user to query)
    * @param data The data to store
@@ -33,9 +49,7 @@ module.exports = function(callbackConfig) {
    */
   function storeProfile(cUser, data) {
     return User.findOne({ zkitId: cUser.zkitId }).then(user => {
-      if (
-        !user // This is unexpected, as the user is from the session
-      )
+      if (!user) // This is unexpected, as the user is from the session
         throw errors.unexpected("UserNotFound");
 
       return Promise.resolve()
@@ -50,6 +64,32 @@ module.exports = function(callbackConfig) {
           return user.save();
         })
         .then(result => result.profileData);
+    });
+  }
+
+  /**
+   * Stores the profile data of the user if canStorePublicProfile allowed it, passing it through transformPublicProfileToStore.
+   * @param cUser The current user (the user to query)
+   * @param data The data to store
+   * @return {Promise}
+   */
+  function storePublicProfile(cUser, data) {
+    return User.findOne({ zkitId: cUser.zkitId }).then(user => {
+      if (!user) // This is unexpected, as the user is from the session
+        throw errors.unexpected("UserNotFound");
+
+      return Promise.resolve()
+        .then(() => !callbackConfig.canStorePublicProfile || callbackConfig.canStorePublicProfile(user.toObject(), data, cUser))
+        .then(appApproved => {
+          if (!appApproved) throw errors.forbidden("ApplicationDenied");
+          debugLog("App approved");
+          return callbackConfig.transformPublicProfileToStore ? callbackConfig.transformPublicProfileToStore(user, data) : data;
+        })
+        .then(data => {
+          user.publicProfileData = data;
+          return user.save();
+        })
+        .then(result => result.publicProfileData);
     });
   }
 
@@ -120,7 +160,9 @@ module.exports = function(callbackConfig) {
 
   return {
     getProfile,
+    getPublicProfile,
     storeProfile,
+    storePublicProfile,
     getData,
     storeData
   };
