@@ -6,7 +6,9 @@
     "start": "node ./bin/www",
     "test": "mocha --timeout 100000",
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- --timeout 100000",
-    "coveralls": "npm run cover && istanbul-coveralls"
+    "coveralls": "npm run cover && istanbul-coveralls",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "engines": {
     "node": "6.x || 7.x"
@@ -34,7 +36,8 @@
     "passport-openidconnect": "git+https://github.com/jaredhanson/passport-openidconnect.git#ac1c0257f02353f818be33c0602cca5883d97235",
     "request": "^2.79.0",
     "request-promise-native": "^1.0.3",
-    "uid2": "^0.0.3"
+    "uid2": "^0.0.3",
+    "snyk": "^1.30.1"
   },
   "devDependencies": {
     "chai": "<4",
@@ -45,5 +48,6 @@
     "istanbul-coveralls": "^1.0.3",
     "mocha": "^3.2.0",
     "webdriverio": "latest"
-  }
+  },
+  "snyk": true
 }
