@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "body-parser": "^1.17.1",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-http": "^3.0.0",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
@@ -34,7 +37,7 @@
     "uid2": "^0.0.3"
   },
   "devDependencies": {
-    "chai": "latest",
+    "chai": "<4",
     "chai-as-promised": "latest",
     "chai-http": "latest",
     "eslint": "latest",

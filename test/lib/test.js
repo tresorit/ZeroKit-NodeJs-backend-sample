@@ -17,6 +17,8 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 require('chai').should();
 
+const idpCodeRedirect = conf.zeroKit.idp.find((a) => a.clientID === process.env["ZKIT_CODE_CLIENT_ID"]).callbackURL;
+const idpHybridRedirect = conf.zeroKit.idp.find((a) => a.clientID === process.env["ZKIT_HYBRID_CLIENT_ID"]).callbackURL;
 
 class RemoteClient {
   constructor(remote) {
@@ -90,14 +92,14 @@ class RemoteClient {
   continueCodeFlow(url) {
     return this.remote.newWindow(url, 'idpCodeLogin')
       .waitUntil(
-        () =>  this.remote.url().then(url => url.value.startsWith('http://localhost:3000/api/auth/callback')),
+        () =>  this.remote.url().then(url => url.value.startsWith(idpCodeRedirect)),
         10000)
       .then(() => this.remote.url())
       .then((url) => this.remote.close().then(() => url.value))
   }
 
   hybridLogin(clientId, state) {
-    const cbPath = `${conf.zeroKit.serviceUrl}/static/v${conf.zeroKit.sdkVersion}/embedded-login.html`;
+    const cbPath = idpHybridRedirect;
     const authUrl = conf.zeroKit.serviceUrl + '/idp/connect/authorize?' +
       'client_id=' + encodeURI(clientId) +
       '&redirect_uri=' + encodeURI(cbPath) +
