@@ -10,7 +10,8 @@ module.exports = {
     "idp": [
       {
         "clientID": process.env.ZKIT_CODE_CLIENT_ID,
-        "clientSecret": process.env.ZKIT_CODE_CLIENT_SECRET
+        "clientSecret": process.env.ZKIT_CODE_CLIENT_SECRET,
+        "callbackURL": process.env.ZKIT_CODE_REDIR_URL
       }, {
         "clientID": process.env.ZKIT_HYBRID_CLIENT_ID,
         "clientSecret": process.env.ZKIT_HYBRID_CLIENT_SECRET,
