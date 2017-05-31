@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const path = require("path");
 
 const express = require("express");
 const session = require("express-session");
@@ -177,10 +178,8 @@ app.use("/zkit-sdk.js", (req, res) =>
     `${config.zeroKit.serviceUrl}/static/v${config.zeroKit.sdkVersion}/zkit-sdk.js`
   ));
 
-/* Uncomment these lines to also serve static files
-app.use(express.static(path.join(__dirname, 'static/')));
-app.use('/', (req,res,next) => res.redirect('/index.html'));
-*/
+app.use(express.static(path.join(__dirname, "static/")));
+app.use("/", (req,res,next) => res.redirect("/index.html"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
