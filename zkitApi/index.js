@@ -6,6 +6,7 @@ module.exports = function(config, callbackConfig) {
 
   const userApi = require("./user.js")(callbackConfig);
   const tresorApi = require("./tresor")(callbackConfig);
+  const invitationLinksApi = require("./invitationLinks")(callbackConfig);
   const dataApi = require("./data")(callbackConfig);
 
   require("./auth.js").init(callbackConfig);
@@ -21,6 +22,7 @@ module.exports = function(config, callbackConfig) {
   router.use("/user", userApi.router);
   router.use("/auth", require("./auth").router(callbackConfig));
   router.use("/tresor", tresorApi.router);
+  router.use("/invitationLinks", invitationLinksApi.router);
   router.use("/data", dataApi.router);
 
   return {
