@@ -1,5 +1,5 @@
-const User = require("../../app.db").User;
-const Tresor = require("../../app.db").Tresor;
+const User = require("../db/User");
+const Tresor = require("../db/Tresor");
 
 const debugLog = require("../utils/debugLogger")("Methods:Tresor");
 

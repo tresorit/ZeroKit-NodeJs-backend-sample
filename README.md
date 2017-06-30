@@ -14,6 +14,8 @@ This runs on Node.js > 6.0
 Before you can start the server you should configure it by editing [config.json](./config.json). It's important to note,
 that you will need IDP configured on your tenant as we recommend for all applications that need server side authorization.
 
+You can see an example in [./config.example.json].
+
 In config.json:
 - dbUrl: The connection url of a mongo (you can use azure document db too), this will be used to store all data. 
 See [below](#database) on how to get one for free.

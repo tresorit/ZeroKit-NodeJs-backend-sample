@@ -9,12 +9,12 @@ module.exports = function(callbackConfig = {}) {
   router.use(apiAuthMiddleware);
 
   router.post("/created", function(req, res, next) {
-    const tresorId = req.body.tresorId;
+    const operationId = req.body.operationId;
     const cUser = req.user;
 
-    if (!tresorId) next(errors.badInput("MissingTresorId"));
+    if (!operationId) next(errors.badInput("MissingOperationId"));
 
-    return invitationLinkMethods.createdInvitationLink(tresorId, cUser).then(() => res.json({}), next);
+    return invitationLinkMethods.createdInvitationLink(operationId, cUser).then(() => res.json({}), next);
   });
 
   router.post("/accepted", function(req, res, next) {
