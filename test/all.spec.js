@@ -31,6 +31,7 @@ describe('API', function () {
       require('./specs/tresor.spec')();
       require('./specs/sharing.spec')();
       require('./specs/data.spec')();
+      require('./specs/invitationLinks.spec')();
     });
   });
 });
