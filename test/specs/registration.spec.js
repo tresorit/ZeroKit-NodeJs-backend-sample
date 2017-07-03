@@ -44,7 +44,6 @@ module.exports = function () {
               .post('/api/user/init-user-registration')
               .send({userName: user1})
               .then(sResp => {
-                console.log(fResp.body, sResp.body);
                 sResp.body.userId.should.not.equal(fResp.userId);
                 sResp.body.regSessionId.should.not.equal(fResp.userId);
 
