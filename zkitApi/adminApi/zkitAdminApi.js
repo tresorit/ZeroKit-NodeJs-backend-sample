@@ -163,18 +163,18 @@ function rejectInvitationLinkAcception(operationId) {
 /*
  This method can be used to get details of the operation, it returns the id of the tresor and the ids of both the kickerer and the kicked
  */
-function approveInvitationLinkRevocation(operationId) {
+function getInvitationLinkRevocationDetails(operationId) {
   return adminApiCall("/tresor/get-invitation-link-revocation-details?operationid=" + operationId);
 }
 /*
  This method is used to approve and commit the kick operation making the uploaded tresor effective.
  */
-function rejectInvitationLinkRevocation(operationId) {
+function approveInvitationLinkRevocation(operationId) {
   return adminApiCall("/tresor/approve-invitation-link-revocation", { OperationId: operationId });
 }
 /*
  This method is used to reject the kick operation, rendering it completely ineffective.
  */
-function getInvitationLinkRevocationDetails(operationId) {
+function rejectInvitationLinkRevocation(operationId) {
   return adminApiCall("/tresor/reject-invitation-link-revocation", { OperationId: operationId });
 }
