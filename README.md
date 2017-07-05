@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/tresorit/ZeroKit-NodeJs-backend-sample.svg?branch=master)](https://travis-ci.org/tresorit/ZeroKit-NodeJs-backend-sample)
 [![Coverage Status](https://coveralls.io/repos/github/tresorit/ZeroKit-NodeJs-backend-sample/badge.svg?branch=master)](https://coveralls.io/github/tresorit/ZeroKit-NodeJs-backend-sample?branch=master)
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 This is an example that can be used for reference when developing the backend service of your own ZeroKit using application.
 It provides a fully functional REST api that is used by our other examples.
 

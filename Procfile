@@ -1,0 +1,1 @@
+web: mkdir -p /app/db; mongod --dbpath /app/db --fork --syslog; while ! nc -z localhost 27017; do echo "Waiting for mongo"; sleep 0.1; done; echo "Mongo started"; npm start;

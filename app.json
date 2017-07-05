@@ -3,5 +3,41 @@
   "description": "A simple express app that serves as the backend of the ZeroKit example clients",
   "repository": "https://github.com/tresorit/ZeroKit-NodeJs-backend-sample",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
-  "keywords": ["node", "express", "rest", "zerokit", "encryption"]
+  "keywords": ["node", "express", "rest", "zerokit", "encryption"],
+
+  "buildpacks": [
+    {
+      "url": "https://github.com/stefangomez/heroku-buildpack-mongodb.git"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "ZKIT_DB_URL": {
+      "description": "A url to a mongo db",
+      "value": "mongodb://localhost:27017",
+      "required": "true"
+    },
+    "ZKIT_TENANT_ID": {
+      "description": "",
+      "required": "true"
+    },
+    "ZKIT_ADMIN_KEY": {
+      "description": "",
+      "required": "true"
+    },
+    "ZKIT_BASE_URL": {
+      "description": "",
+      "required": "true"
+    },
+    "ZKIT_CONFIG_FILE": {
+      "description": "",
+      "value": "./config.env"
+    },
+    "ZKIT_SDK_VERSION": {
+      "description": "",
+      "value": "4"
+    }
+  }
 }
