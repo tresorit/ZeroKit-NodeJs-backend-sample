@@ -26,7 +26,7 @@
       "value": "4"
     },
     "ZKIT_BASE_URL": {
-      "description": "The url where you will reach the backend (e.g. https://salty-headland-12345.herokuapp.com)",
+      "description": "The url where you will reach the backend (e.g. https://app-name.herokuapp.com)",
       "required": "true"
     },
     "ZKIT_DB_URL": {
