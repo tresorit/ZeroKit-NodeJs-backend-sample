@@ -1,8 +1,7 @@
 {
   "name": "ZeroKit Node.js sample backend",
-  "description": "A simple express app that serves as the backend of the ZeroKit example clients",
+  "description": "A simple express app that serves as the backend of the ZeroKit example clients. You will need a free account from https://manage.tresorit.io",
   "repository": "https://github.com/tresorit/ZeroKit-NodeJs-backend-sample",
-  "logo": "https://node-js-sample.herokuapp.com/node.png",
   "keywords": ["node", "express", "rest", "zerokit", "encryption"],
 
   "buildpacks": [
@@ -14,30 +13,42 @@
     }
   ],
   "env": {
-    "ZKIT_DB_URL": {
-      "description": "A url to a mongo db",
-      "value": "mongodb://localhost:27017",
-      "required": "true"
-    },
-    "ZKIT_TENANT_ID": {
-      "description": "",
+    "ZKIT_SERVICE_URL": {
+      "description": "The service url from the admin portal",
       "required": "true"
     },
     "ZKIT_ADMIN_KEY": {
-      "description": "",
+      "description": "The admin key from the admin portal",
       "required": "true"
-    },
-    "ZKIT_BASE_URL": {
-      "description": "",
-      "required": "true"
-    },
-    "ZKIT_CONFIG_FILE": {
-      "description": "",
-      "value": "./config.env"
     },
     "ZKIT_SDK_VERSION": {
-      "description": "",
+      "description": "The version of ZeroKit that the application uses",
       "value": "4"
+    },
+    "ZKIT_BASE_URL": {
+      "description": "The url where you will reach the backend (e.g. https://salty-headland-12345.herokuapp.com)",
+      "required": "true"
+    },
+    "ZKIT_DB_URL": {
+      "description": "A url to a mongo db, by default it links to a mongodb on heroku, meaning your data is lost every restart",
+      "value": "mongodb://localhost:27017",
+      "required": "true"
+    },
+    "ZKIT_CODE_CLIENT_ID": {
+      "description": "The id of a web IDP client. You can add on on the management portal."
+    },
+    "ZKIT_CODE_CLIENT_SECRET": {
+      "description": "The secret of a web IDP client. You can add on on the management portal."
+    },
+    "ZKIT_HYBRID_CLIENT_ID": {
+      "description": "The id of an SDK IDP client. You can add on on the management portal."
+    },
+    "ZKIT_HYBRID_CLIENT_SECRET": {
+      "description": "The secret of an SDK IDP client. You can add on on the management portal."
+    },
+    "ZKIT_CONFIG_FILE": {
+      "description": "Relative path to the configuration file. To use these values it has to be \"./config.env\"",
+      "value": "./config.env"
     }
   }
 }
