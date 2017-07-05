@@ -1,7 +1,7 @@
 module.exports = {
   "dbUrl": process.env.ZKIT_DB_URL,
   "baseUrl": process.env.ZKIT_BASE_URL,
-  "appOrigins": ["localhost:3000", "localhost:3002"],
+  "appOrigins": ["http://localhost:3000", process.env.ZKIT_APP_ORIGIN || "http://localhost:3002"],
   "zeroKit": {
     "serviceUrl": `https://${process.env.ZKIT_TENANT_ID}.api.tresorit.io`,
     "adminUserId": `admin@${process.env.ZKIT_TENANT_ID}.tresorit.io`,
