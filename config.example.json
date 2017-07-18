@@ -6,7 +6,7 @@
     "serviceUrl": "https://tenant1234.tresorit.io",
     "adminUserId": "admin@tenant1234.tresorit.io",
     "adminKey": "1234asdf1234asdf1234asdf1234asdf1234asdf1234asdf1234asdf1234asdf",
-    "sdkVersion": "4",
+    "sdkVersion": "5",
     "idp": [
       {
         "clientID": "tenant1234_client1234",

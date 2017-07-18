@@ -13,6 +13,10 @@
     }
   ],
   "env": {
+    "ZKIT_BASE_URL": {
+      "description": "The url where you will reach the backend (e.g. https://app-name.herokuapp.com)",
+      "required": "true"
+    },
     "ZKIT_SERVICE_URL": {
       "description": "The service url from the admin portal",
       "required": "true"
@@ -23,16 +27,7 @@
     },
     "ZKIT_SDK_VERSION": {
       "description": "The version of ZeroKit that the application uses",
-      "value": "4"
-    },
-    "ZKIT_BASE_URL": {
-      "description": "The url where you will reach the backend (e.g. https://app-name.herokuapp.com)",
-      "required": "true"
-    },
-    "ZKIT_DB_URL": {
-      "description": "A url to a mongo db, by default it links to a mongodb on heroku, meaning your data is lost every restart",
-      "value": "mongodb://localhost:27017",
-      "required": "true"
+      "value": "5"
     },
     "ZKIT_CODE_CLIENT_ID": {
       "description": "The id of a web IDP client. You can add on on the management portal."
@@ -46,8 +41,13 @@
     "ZKIT_HYBRID_CLIENT_SECRET": {
       "description": "The secret of an SDK IDP client. You can add on on the management portal."
     },
+    "ZKIT_DB_URL": {
+      "description": "A url to a mongo db, by default it links to a mongodb on heroku, meaning your data is lost every restart",
+      "value": "mongodb://localhost:27017",
+      "required": "true"
+    },
     "ZKIT_CONFIG_FILE": {
-      "description": "Relative path to the configuration file. To use these values it has to be \"./config.env\"",
+      "description": "Relative path to the configuration file. To use these values it has to be \"./config.env\", if you change it you will have to edit the configuration file yourself.",
       "value": "./config.env"
     }
   }
